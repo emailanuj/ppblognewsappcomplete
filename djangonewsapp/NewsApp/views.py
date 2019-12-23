@@ -17,7 +17,9 @@ def Contact(request):
 
 def NewsList(request):
     news_list=News.objects.all()
+    filtered_data=News.objects.filter(title='Test News 2')
     context={
-        "data":news_list
+        "data":news_list,
+        "filtered_data":filtered_data
     }
     return render(request,'news.html',context)

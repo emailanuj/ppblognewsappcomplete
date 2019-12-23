@@ -11,4 +11,10 @@
     <br>Title  : {{ news.title }}
     <br>Description : {{ news.description}}
     {% endfor %}
+    <br> Filtered data
+    {% for filter in  filtered_data %}
+    <br>Author : {{ filter.author }}
+    <br>Title  : {{ filter.title }}
+    <br>Description : {{ filter.description}}
+    {% endfor %}
 {% endblock %}
