@@ -5,4 +5,10 @@
 {% block body_content %}
   {% include 'navigation.html' %}
     <h1> This is News Page </h1>
+    News List
+    {% for news in  data %}
+    <br>Author : {{ news.author }}
+    <br>Title  : {{ news.title }}
+    <br>Description : {{ news.description}}
+    {% endfor %}
 {% endblock %}
