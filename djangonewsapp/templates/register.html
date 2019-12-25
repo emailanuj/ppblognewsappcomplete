@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+    {% block title_content %}
+        Home
+    {% endblock %}
+{% block body_content %}
+  {% include 'navigation.html' %}
+    <h1> This User Register Page </h1>
+    <form action="{% url 'addUser' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Register User" class="btn btn-primary">
+    </form>
+{% endblock %}

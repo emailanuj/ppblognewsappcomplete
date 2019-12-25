@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.shortcuts import HttpResponse
-from .models import News
+from .models import News,RegisterUser
+from .forms import RegisterUserForm
 # Create your views here.
 def Home(request):
     context={
@@ -23,3 +24,21 @@ def NewsList(request):
         "filtered_data":filtered_data
     }
     return render(request,'news.html',context)
+
+
+def Register(request):
+    context={
+        "form":RegisterUserForm
+    }
+    return render(request,'register.html',context)
+
+def addUser(request):
+    form=RegisterUserForm(request.POST)
+
+    if form.is_valid():
+        registerUser=RegisterUser(username=form.cleaned_data['username'],
+        password=form.cleaned_data['password'],
+        email=form.cleaned_data['email'],
+        phone=form.cleaned_data['phone'])
+        registerUser.save()
+    return redirect('home')
