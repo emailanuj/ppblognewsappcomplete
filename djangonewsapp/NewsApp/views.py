@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.shortcuts import HttpResponse
 from .models import News,RegisterUser
 from .forms import RegisterUserForm
+from django.contrib import messages
 # Create your views here.
 def Home(request):
     context={
@@ -41,4 +42,5 @@ def addUser(request):
         email=form.cleaned_data['email'],
         phone=form.cleaned_data['phone'])
         registerUser.save()
-    return redirect('home')
+        messages.add_message=(request, messages.SUCCESS, "You have been rigistered successfully!")
+    return redirect('register')

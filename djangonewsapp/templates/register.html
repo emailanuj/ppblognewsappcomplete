@@ -6,6 +6,19 @@
   {% include 'navigation.html' %}
   <div style="width:70%;">
     <h1> This User Register Page </h1>
+    <!--- Flash Messages area -->
+    <ul class="messages">
+    {% if messages %}
+    {% for message in messages %}
+    {{ message }}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    {% else %}
+    <li>
+    No Message
+    </li>
+    {% endif %}
+    </ul>
     <form action="{% url 'addUser' %}" method="POST">
      {% csrf_token %}
   <div class="form-group">
