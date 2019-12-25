@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
 from django.shortcuts import HttpResponse
 from .models import News,RegisterUser
-from .forms import RegisterUserForm
+from .forms import RegisterUserForm,RegisterModel
 from django.contrib import messages
+
 # Create your views here.
 def Home(request):
     context={
@@ -44,3 +45,15 @@ def addUser(request):
         registerUser.save()
         messages.add_message=(request, messages.SUCCESS, "You have been rigistered successfully!")
     return redirect('register')
+
+def ModelForm(request):
+    context={
+        'modelform':RegisterModel
+    }
+    return render(request,'model-form.html',context)
+
+def addModalForm(request):
+    myModalForm=RegisterModel(request.POST)
+    if myModalForm.is_valid():
+        myModalForm.save()
+    return redirect('home')
